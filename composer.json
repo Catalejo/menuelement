@@ -1,20 +1,21 @@
 {
-    "name": "catalejo/menuelement",
-    "description": "Generador de elementos de un menú, ésto fue desarrollado a modo de ejercicio y por lo mismo no es un desarrollo muy acabado",
-    "authors": [
-        {
-            "name": "Juan Torres",
-            "email": "juan.torres@catalejocorp.cl"
-        }
-    ],
-    "require": {
-        "php": ">=5.4.0",
-        "illuminate/support": "~5"
-    },
-    "autoload": {
-        "psr-0": {
-            "Catalejo\\Menuelement": "src/"
-        }
-    },
-    "minimum-stability": "stable"
+  "name": "catalejo/menuelement",
+  "description": "Generador de elementos de un menú, ésto fue desarrollado a modo de ejercicio y por lo mismo no es un desarrollo muy acabado",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Juan Torres",
+      "email": "juan.torres@catalejocorp.cl"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "illuminate/support": "~5"
+  },
+  "autoload": {
+    "psr-0": {
+      "Catalejo\\Menuelement": "src/"
+    }
+  },
+  "minimum-stability": "stable"
 }
