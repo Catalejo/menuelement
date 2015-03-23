@@ -14,7 +14,7 @@
   },
   "autoload": {
     "psr-0": {
-      "Catalejo\\Menuelement": "src/"
+      "Catalejo\\MenuElement": "src/"
     }
   },
   "minimum-stability": "stable"
