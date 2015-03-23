@@ -13,7 +13,7 @@ class MenuElement {
      * @param $args Configuraciones extras
      * @return string
      */
-    public function make($path, $text, $args)
+    public function make($path, $text, $args = [])
     {
         $classElement = config('menuelement.classElement');
         $classCurrentElement = self::createClassCurrentElement($path);
