@@ -26,3 +26,21 @@ En una vista o partials, en donde se tenga un menu de navegación, utilicen esto
         {{ MenuElement::make('contact_path','Contacto', ['icon' => 'glyphicon-envelope']) }}
     </ul>
 ```
+Si tenemos definidas estas rutas:
+```
+Route::get('home', [
+    'as' => 'home_path',
+    'uses' => 'HomeController@index'
+]);
+Route::get('contacto', [
+    'as' => 'contact_path',
+    'uses' => 'ContactController@index'
+]);
+``` 
+Y si estamos ubicados en el `home`, ésto da como resultado:
+```
+    <ul>
+        <li class="active"><a href="http://app.dev"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>HOME</a></li>
+        <li class=""><a href="http://app.dev/contacto"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>Contacto</a></li>
+    </ul>
+```
