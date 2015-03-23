@@ -27,8 +27,8 @@ Al hacer esto, se copia un archivo de configuración desde el paquete a la ruta 
 En una vista o partials, en donde se tenga un menu de navegación, utilicen esto:
 ```html
 <ul>
-    {{ MenuElement::make('home_path','HOME', ['icon' => 'glyphicon-home']) }}
-    {{ MenuElement::make('contact_path','Contacto', ['icon' => 'glyphicon-envelope']) }}
+    {!! MenuElement::make('home_path','HOME', ['icon' => 'glyphicon-home']) !!}
+    {!! MenuElement::make('contact_path','Contacto', ['icon' => 'glyphicon-envelope']) !!}
 </ul>
 ```
 Si tenemos definidas estas rutas:
