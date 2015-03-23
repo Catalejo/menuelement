@@ -10,7 +10,7 @@ class MenuElement {
      *
      * @param $path Nombre de la ruta
      * @param $text Texto que se mostrará
-     * @param $args Configuraciones extras
+     * @param array|$args Configuraciones extras
      * @return string
      */
     public function make($path, $text, $args = [])
