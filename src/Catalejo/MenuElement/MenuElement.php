@@ -5,21 +5,24 @@ use Config, Route;
 
 class MenuElement {
 
-    protected $view;
-    protected $route;
-    protected static $instance;
-
-
+    /**
+     * Creador del elemento que se entregará como resultado
+     *
+     * @param $path Nombre de la ruta
+     * @param $text Texto que se mostrará
+     * @param $args Configuraciones extras
+     * @return string
+     */
     public function make($path, $text, $args)
     {
-        $classElement = Config::get('menuelement::classElement');
-        $classCurrentElement = $this->createClassCurrentElement($path);
-        $icon = $this->buildIcon($args);
+        $classElement = config('menuelement.classElement');
+        $classCurrentElement = self::createClassCurrentElement($path);
+        $icon = self::createIcon($args);
         $url = route($path);
-        $element = $this->createElement();
+        $element = self::createElement();
 
         $replace = [
-            '{{CLASSELEMENT}}' => "{$classElement} {$classCurrentElement}",
+            '{{CLASSELEMENT}}' => trim("{$classElement} {$classCurrentElement}"),
             '{{URL}}' => $url,
             '{{ICON}}' => $icon,
             '{{TEXT}}' => $text,
@@ -28,28 +31,36 @@ class MenuElement {
         return str_replace(array_keys($replace), array_values($replace), $element );
     }
 
-    public function createClassCurrentElement($path)
+    /**
+     * Creador de la clase de CSS que indica que estamos en el actual elemento
+     *
+     * @param $path
+     * @return Config|null
+     */
+    public static function createClassCurrentElement($path)
     {
         if(Route::currentRouteName() == $path)
         {
-            return Config::get('menuelement::currentElement');
+            return config('menuelement.classCurrentElement');
         }
 
         return null;
     }
 
     /**
+     * Creador de toda la etiqueta correspondiente al dibujado del icono
+     *
      * @param $args
      * @return null|string
      */
-    public function createIcon($args)
+    public static function createIcon($args)
     {
         $icon = array_get($args, 'icon');
 
         if( isset($icon))
         {
-            $classIcon = Config::get('menuelement::classIcon');
-            $wrapper = Config::get('menuelement::wrapperIcon');
+            $classIcon = config('menuelement.classIcon');
+            $wrapper = config('menuelement.wrapperIcon');
 
             return '<' . $wrapper . ' class="' . $classIcon . ' ' . $icon . '" aria-hidden="true"></' . $wrapper . '>';
         }
@@ -58,30 +69,16 @@ class MenuElement {
     }
 
 
-    public function createElement()
+    /**
+     * Creador del template del elemento, solamente dejando expresadas las variables que después se reemplazarán
+     *
+     * @return string
+     */
+    public static function createElement()
     {
-        $wrapper = Config::get('menuelement::wapper');
+        $wrapper = config('menuelement.wrapper');
 
         return '<' . $wrapper . ' class="{{CLASSELEMENT}}"><a href="{{URL}}">{{ICON}}{{TEXT}}</a></' . $wrapper . '>';
-    }
-
-
-    /////////////////////
-    /**
-     * Handle dynamic method calls
-     *
-     * @param $path
-     * @param $text
-     * @param array $args
-     * @return
-     * @internal param string $name
-     */
-    public static function __callStatic($path, $text, $args)
-    {
-        $args = empty($args) ? [] : $args[0];
-        $instance = static::$instance;
-        if ( ! $instance) $instance = static::$instance = new static;
-        return $instance->make($path, $text, $args);
     }
 
 }

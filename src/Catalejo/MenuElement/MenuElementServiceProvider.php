@@ -14,8 +14,15 @@ class MenuElementServiceProvider extends ServiceProvider {
 
     public function boot()
     {
-        $this->package('catalejo/menuelement');
+        // Especificamos cual es el nombre del archivo de configuración
+        $this->publishes([
+            __DIR__.'/../../config/menuelement.php' => config_path('menuelement.php'),
+        ]);
 
+        // Merge entre la configuración por defecto y la que se especifique al hacer un vendor:publish
+        $this->mergeConfigFrom(__DIR__.'/../../config/menuelement.php', 'menuelement');
+
+        // Alias de nuestra clase, para facilitar su suo
         AliasLoader::getInstance()->alias('MenuElement', 'Catalejo\MenuElement\MenuElement');
     }
     
