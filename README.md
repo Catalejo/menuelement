@@ -9,7 +9,7 @@ La clase base utilizada por los íconos es `glyphicon`, la misma que utiliza [Bo
 ```bash
 composer require "catalejo/menuelement":"dev-master"
 ```
-### Paso 2: Agregar el ServiceProvider
+### Paso 2: Agregar el ServiceProvider y Facade
 En el archivo `config/app.php` agregar:
 ```php
 ...
@@ -17,6 +17,9 @@ En el archivo `config/app.php` agregar:
     'Catalejo\MenuElement\MenuElementServiceProvider',
 ],
 ...
+'aliases' => [
+    'MenuElement'   => 'Catalejo\MenuElement\MenuElement',
+]
 ```
 ### Paso 3: Generar los archivos de configuración local
 ```bash
